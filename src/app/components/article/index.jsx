@@ -23,15 +23,19 @@ const Article = ({ Turnos, addMinutesIni, addTurno, onChangeTurnoProperty }) => 
                     <div className="row">
                         <div className="col-md-6 mb-3">
                             <label htmlFor="firstName">Carga horaria necessária</label>
-                            <InputMask
-                                mask="99:99"
-                                maskChar=" "
-                                className="form-control app-input"
-                                value={cargaHoraria}
-                                //ref={input => turno._name = input}
-                                onChange={(e) => setCargaHoraria(e.target.value)}
-                            />
+                            <div className="row">
+                                <div className="col-md-4">
+                                    <InputMask
+                                        mask="99:99"
+                                        maskChar=" "
+                                        className="form-control app-input"
+                                        value={cargaHoraria}
+                                        //ref={input => turno._name = input}
+                                        onChange={(e) => setCargaHoraria(e.target.value)}
+                                    />
 
+                                </div>
+                            </div>
                         </div>
                     </div>
 

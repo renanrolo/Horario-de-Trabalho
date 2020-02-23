@@ -32,10 +32,6 @@ const aside = ({ Turnos }) => {
                         </div>
                         <span className="text-success">{getTotalHours(Turnos)}</span>
                     </li>
-                    <li className="list-group-item d-flex justify-content-between">
-                        <span>Saldo de Hoje</span>
-                        <strong>coisa</strong>
-                    </li>
                 </ul>
 
             </div>

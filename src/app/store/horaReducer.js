@@ -11,12 +11,12 @@ const turnoVazio = {
 const INITIAL_STATE = {
     //horas: JSON.parse(localStorage.getItem(key))
     Turnos: [{
-        ini: '10:00',
-        fim: '12:00'
+        ini: '08:00',
+        fim: '11:30'
     },
     {
-        ini: '',
-        fim: ''
+        ini: '12:30',
+        fim: '17:00'
     }]
 };
 
