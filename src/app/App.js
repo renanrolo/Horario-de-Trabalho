@@ -8,6 +8,7 @@ import {
 import Article from './components/article'
 import Aside from './components/aside'
 import Footer from './components/footer'
+import Navbar from './components/navbar'
 
 function App() {
 
@@ -53,67 +54,16 @@ function App() {
   }
 
   return (
-    <div className="container">
-      {/* <div>
-
-        Primiro Turno
+    <>
+      <Navbar />
+      <div className="container">
         <div className="row">
-          <br />
-
-          <Input
-            valor={hrUm}
-            setValor={setHrUm}
-            label="Inicio"
-          />
-
-          <Input
-            valor={hrDois}
-            setValor={setHrDois}
-            label="Fim"
-          />
-
+          <Article />
+          <Aside />
         </div>
-
-        <br />
-        <br />
-
-        Segundo Turno
-        <div className="row">
-          <br />
-
-          <Input
-            valor={hrTres}
-            setValor={setHrTres}
-            label="Inicio"
-          />
-
-          <Input
-            valor={hrQuatro}
-            setValor={setHrQuatro}
-            label="Fim"
-          />
-
-        </div>
-
-
-        <div className="row">
-          <button
-            onClick={calcular}
-            className="btn btn-primary"
-            type="submit">Calcular</button>
-        </div>
-      </div> */}
-
-      <div className="row">
-        <Article />
-
-        <Aside />
+        <Footer />
       </div>
-
-      <Footer />
-
-
-    </div>
+    </>
   );
 }
 
