@@ -126,7 +126,15 @@ export default function horaReducer(state = INITIAL_STATE, action) {
 
         case 'UPDATE_CARGA_HORARIA':
             {
-                return saveState({ ...state, CargaHoraria: action.payload })
+                const newTurnos = state.Turnos.map((item, i) => {
+                    return { 
+                        ...item
+                    }
+                });
+
+                previewLastTime('ini', 0, newTurnos, action.payload)
+
+                return saveState({ ...state, CargaHoraria: action.payload, Turnos: newTurnos })
             }
 
         default:
