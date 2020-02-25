@@ -19,3 +19,8 @@ export function addTurno() {
 export function onChangeTurnoProperty(index, propName, value){
     return { type: 'CHANGE_TURNO_VALUE', payload: {index, propName, value}}
 }
+
+export function setCargaHoraria(cargaHoraria){
+    return { type: 'UPDATE_CARGA_HORARIA', payload: cargaHoraria}
+
+}

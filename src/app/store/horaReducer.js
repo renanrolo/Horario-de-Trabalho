@@ -17,7 +17,8 @@ const INITIAL_STATE = {
     {
         ini: '12:30',
         fim: '17:00'
-    }]
+    }],
+    CargaHoraria: '08:00'
 };
 
 function addMinutes(oldValue, value) {
@@ -29,6 +30,60 @@ function addMinutes(oldValue, value) {
     return hourStringByMinutes(newValue);
 }
 
+function hourHasValue(hour) {
+    const minutes = getMinutes(hour);
+
+    if (minutes && minutes > 0) {
+        return true;
+    }
+
+    return false;
+}
+
+function previewLastTime(propName, index, turnos, cargaHoraria) {
+    if (!cargaHoraria) {
+        return; //se não tiver carga horaria
+    }
+
+    const ultimoIndex = turnos.length - 1;
+
+    if (propName === "fim" && index === ultimoIndex) {
+        return; //se estiver editando o ultimo registro
+    }
+
+    let todosPreenchidos = true;
+    turnos.forEach((t, i) => {
+        if (i === ultimoIndex) {
+            if (!hourHasValue(t.ini)) {
+                todosPreenchidos = false;
+            }
+        } else {
+            if (!hourHasValue(t.ini) || !hourHasValue(t.fim)) {
+                todosPreenchidos = false;
+            }
+        }
+    });
+
+    if (!todosPreenchidos) {
+        return;
+    }
+
+    let total = 0;
+    turnos.forEach((t, i) => {
+        if (i < ultimoIndex) {
+            total += getMinutes(t.fim) - getMinutes(t.ini);
+        }
+    });
+
+    const ultimoTurno = turnos[ultimoIndex];
+
+    const restante = getMinutes(cargaHoraria) - total;
+
+    const previsaoSaidaEmMinutos = getMinutes(ultimoTurno.ini) + restante;
+
+    ultimoTurno.fim = hourStringByMinutes(previsaoSaidaEmMinutos);
+}
+
 export default function horaReducer(state = INITIAL_STATE, action) {
 
     switch (action.type) {
@@ -36,9 +91,10 @@ export default function horaReducer(state = INITIAL_STATE, action) {
             {
                 const { turno, minutes } = action.payload;
                 turno.ini = addMinutes(turno.ini, minutes);
-                const turnos = state.Turnos;
+                const turnos = turnos;
                 return { ...state.Turnos, turnos }
             }
+
 
         case 'ADD_MINUTES_FIM':
             {
@@ -47,9 +103,11 @@ export default function horaReducer(state = INITIAL_STATE, action) {
                 return { ...state, state }
             }
 
+
         case 'ADD_TURNO':
             state.Turnos.push(turnoVazio);
             return { ...state, Turnos: state.Turnos }
+
 
         case 'CHANGE_TURNO_VALUE':
             const { propName, value, index } = action.payload;
@@ -59,17 +117,21 @@ export default function horaReducer(state = INITIAL_STATE, action) {
                 { fim: value }
 
             const newTurnos = state.Turnos.map((item, i) => {
-                if (i !== index) {
-                    // This isn't the item we care about - keep it as-is
+                if (i !== index) { // This isn't the item we care about - keep it as-is
                     return item
                 }
-                // Otherwise, this is the one we want - return an updated value
-                return {
+                return { // Otherwise, this is the one we want - return an updated value
                     ...item, ...newTurno
                 }
             });
 
+            previewLastTime(propName, index, newTurnos, state.CargaHoraria)
+
             return { ...state, Turnos: newTurnos }
+
+
+        case 'UPDATE_CARGA_HORARIA':
+            return { ...state, CargaHoraria: action.payload }
 
         default:
             return state;

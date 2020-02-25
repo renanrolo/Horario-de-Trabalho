@@ -5,13 +5,11 @@ import * as HoraAction from '../../store/horaAction'
 import InputMask from 'react-input-mask';
 import './style.css'
 
-const Article = ({ Turnos, addMinutesIni, addTurno, onChangeTurnoProperty }) => {
+const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurnoProperty }) => {
 
     const onChange = (index, propName, e) => {
         onChangeTurnoProperty(index, propName, e.target.value)
     }
-
-    const [cargaHoraria, setCargaHoraria] = useState('');
 
     return (
         <>
@@ -29,7 +27,7 @@ const Article = ({ Turnos, addMinutesIni, addTurno, onChangeTurnoProperty }) => 
                                         mask="99:99"
                                         maskChar=" "
                                         className="form-control app-input"
-                                        value={cargaHoraria}
+                                        value={CargaHoraria}
                                         //ref={input => turno._name = input}
                                         onChange={(e) => setCargaHoraria(e.target.value)}
                                     />
