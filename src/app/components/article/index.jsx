@@ -38,43 +38,44 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                     </div>
 
                     <hr />
-
-                    {Turnos.map((turno, index) => (
-                        <div className="row" key={index}>
-                            <div className="input-box mr-3 mb-3">
-                                <div className="input-group">
-                                    <div className="input-group-prepend">
-                                        <div className="input-group-text">Início</div>
+                    
+                    <div className="col-12">
+                        {Turnos.map((turno, index) => (
+                            <div className="row" key={index}>
+                                <div className="input-box mr-3 mb-3">
+                                    <div className="input-group">
+                                        <div className="input-group-prepend">
+                                            <div className="input-group-text">Início</div>
+                                        </div>
+                                        <InputMask
+                                            mask="99:99"
+                                            maskChar=" "
+                                            className="form-control app-input"
+                                            value={turno.ini}
+                                            //ref={input => turno._name = input}
+                                            onChange={(e) => onChange(index, "ini", e)}
+                                        />
                                     </div>
-                                    <InputMask
-                                        mask="99:99"
-                                        maskChar=" "
-                                        className="form-control app-input"
-                                        value={turno.ini}
-                                        //ref={input => turno._name = input}
-                                        onChange={(e) => onChange(index, "ini", e)}
-                                    />
+                                </div>
+
+                                <div className="input-box mr-3 mb-3">
+                                    <div className="input-group">
+                                        <div className="input-group-prepend">
+                                            <div className="input-group-text">Fim</div>
+                                        </div>
+                                        <InputMask
+                                            mask="99:99"
+                                            maskChar=" "
+                                            className="form-control app-input"
+                                            value={turno.fim}
+                                            //ref={input => turno._name = input}
+                                            onChange={(e) => onChange(index, "fim", e)}
+                                        />
+                                    </div>
                                 </div>
                             </div>
-
-                            <div className="input-box mr-3 mb-3">
-                                <div className="input-group">
-                                    <div className="input-group-prepend">
-                                        <div className="input-group-text">Fim</div>
-                                    </div>
-                                    <InputMask
-                                        mask="99:99"
-                                        maskChar=" "
-                                        className="form-control app-input"
-                                        value={turno.fim}
-                                        //ref={input => turno._name = input}
-                                        onChange={(e) => onChange(index, "fim", e)}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-
+                        ))}
+                    </div>
                 </form>
             </div>
         </>
