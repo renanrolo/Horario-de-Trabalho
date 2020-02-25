@@ -13,7 +13,6 @@ function saveState(state) {
     return state;
 }
 
-
 function loadState() {
     try {
         const state = JSON.parse(localStorage.getItem(key))
@@ -38,15 +37,6 @@ function loadState() {
 }
 
 const INITIAL_STATE = loadState();
-
-function addMinutes(oldValue, value) {
-    const newValue = getMinutes(oldValue) + value;
-    if (newValue <= 0) {
-        return "00:00"
-    }
-
-    return hourStringByMinutes(newValue);
-}
 
 function hourHasValue(hour) {
     const minutes = getMinutes(hour);
@@ -105,22 +95,6 @@ function previewLastTime(propName, index, turnos, cargaHoraria) {
 export default function horaReducer(state = INITIAL_STATE, action) {
 
     switch (action.type) {
-        case 'ADD_MINUTES_INI':
-            {
-                const { turno, minutes } = action.payload;
-                turno.ini = addMinutes(turno.ini, minutes);
-                const turnos = turnos;
-                return saveState({ ...state.Turnos, turnos })
-            }
-
-
-        case 'ADD_MINUTES_FIM':
-            {
-                const { turno, minutes } = action.payload;
-                turno.horaFim = addMinutes(turno.horaFim, minutes);
-                return saveState({ ...state, state })
-            }
-
 
         case 'ADD_TURNO':
             {
