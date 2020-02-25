@@ -30,6 +30,7 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                         value={CargaHoraria}
                                         //ref={input => turno._name = input}
                                         onChange={(e) => setCargaHoraria(e.target.value)}
+                                        type="tel"
                                     />
 
                                 </div>
@@ -38,7 +39,7 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                     </div>
 
                     <hr />
-                    
+
                     <div className="col-12">
                         {Turnos.map((turno, index) => (
                             <div className="row" key={index}>
@@ -54,6 +55,7 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                             value={turno.ini}
                                             //ref={input => turno._name = input}
                                             onChange={(e) => onChange(index, "ini", e)}
+                                            type="tel"
                                         />
                                     </div>
                                 </div>
@@ -70,6 +72,7 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                             value={turno.fim}
                                             //ref={input => turno._name = input}
                                             onChange={(e) => onChange(index, "fim", e)}
+                                            type="tel"
                                         />
                                     </div>
                                 </div>
