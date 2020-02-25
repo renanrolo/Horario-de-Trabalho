@@ -3,23 +3,41 @@ import {
     getMinutes
 } from '../services/functions'
 
-const turnoVazio = {
-    ini: '',
-    fim: '',
+const key = "cargahoraria";
+const log = window.console ? console.log : function () { };
+
+const turnoVazio = { ini: '', fim: '', }
+
+function saveState(state) {
+    localStorage.setItem(key, JSON.stringify(state));
+    return state;
 }
 
-const INITIAL_STATE = {
-    //horas: JSON.parse(localStorage.getItem(key))
-    Turnos: [{
-        ini: '08:00',
-        fim: '11:30'
-    },
-    {
-        ini: '12:30',
-        fim: '17:00'
-    }],
-    CargaHoraria: '08:00'
-};
+
+function loadState() {
+    try {
+        const state = JSON.parse(localStorage.getItem(key))
+        if (state) {
+            return state;
+        }
+    } catch (e) {
+        log("invalid loadJson", e)
+    }
+
+    return {
+        Turnos: [{
+            ini: '08:00',
+            fim: '11:30'
+        },
+        {
+            ini: '12:30',
+            fim: '17:00'
+        }],
+        CargaHoraria: '08:00'
+    }
+}
+
+const INITIAL_STATE = loadState();
 
 function addMinutes(oldValue, value) {
     const newValue = getMinutes(oldValue) + value;
@@ -92,7 +110,7 @@ export default function horaReducer(state = INITIAL_STATE, action) {
                 const { turno, minutes } = action.payload;
                 turno.ini = addMinutes(turno.ini, minutes);
                 const turnos = turnos;
-                return { ...state.Turnos, turnos }
+                return saveState({ ...state.Turnos, turnos })
             }
 
 
@@ -100,38 +118,42 @@ export default function horaReducer(state = INITIAL_STATE, action) {
             {
                 const { turno, minutes } = action.payload;
                 turno.horaFim = addMinutes(turno.horaFim, minutes);
-                return { ...state, state }
+                return saveState({ ...state, state })
             }
 
 
         case 'ADD_TURNO':
-            state.Turnos.push(turnoVazio);
-            return { ...state, Turnos: state.Turnos }
-
+            {
+                state.Turnos.push(turnoVazio);
+                return saveState({ ...state, Turnos: state.Turnos })
+            }
 
         case 'CHANGE_TURNO_VALUE':
-            const { propName, value, index } = action.payload;
+            {
+                const { propName, value, index } = action.payload;
 
-            const newTurno = (propName === "ini") ?
-                { ini: value } :
-                { fim: value }
+                const newTurno = (propName === "ini") ?
+                    { ini: value } :
+                    { fim: value }
 
-            const newTurnos = state.Turnos.map((item, i) => {
-                if (i !== index) { // This isn't the item we care about - keep it as-is
-                    return item
-                }
-                return { // Otherwise, this is the one we want - return an updated value
-                    ...item, ...newTurno
-                }
-            });
+                const newTurnos = state.Turnos.map((item, i) => {
+                    if (i !== index) { // This isn't the item we care about - keep it as-is
+                        return item
+                    }
+                    return { // Otherwise, this is the one we want - return an updated value
+                        ...item, ...newTurno
+                    }
+                });
 
-            previewLastTime(propName, index, newTurnos, state.CargaHoraria)
+                previewLastTime(propName, index, newTurnos, state.CargaHoraria)
 
-            return { ...state, Turnos: newTurnos }
-
+                return saveState({ ...state, Turnos: newTurnos })
+            }
 
         case 'UPDATE_CARGA_HORARIA':
-            return { ...state, CargaHoraria: action.payload }
+            {
+                return saveState({ ...state, CargaHoraria: action.payload })
+            }
 
         default:
             return state;
