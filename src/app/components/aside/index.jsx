@@ -1,15 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as HoraAction from '../../store/horaAction'
 import { getTotalHours, getStringTotalTurno } from '../../services/functions'
+import { horasTrabalhadasSaindoAgora } from '../../services/functions'
 
+const Aside = ({ Turnos }) => {
 
-const aside = ({ Turnos }) => {
+    const [saindoAgora, setSaindoAgora] = useState(horasTrabalhadasSaindoAgora(Turnos));
+
+    const calcularHorasTrabalhadas = () => {
+        setSaindoAgora(horasTrabalhadasSaindoAgora(Turnos));
+    }
+
     return (
         <>
             <div className="col-md-4 order-md-2 mb-4">
-               
+
                 <h4 className="d-flex justify-content-between align-items-center mb-3">
                     <span className="text-muted">Resumo</span>
                 </h4>
@@ -30,8 +37,18 @@ const aside = ({ Turnos }) => {
                             <h6 className="my-0">TOTAL</h6>
                             {/* <small>EXAMPLECODE</small> */}
                         </div>
-                        <span className="text-success">{getTotalHours(Turnos)}</span>
+                        <strong className="text-success">{getTotalHours(Turnos)}</strong>
                     </li>
+
+                    {saindoAgora &&
+                        <li
+                            onClick={() => { calcularHorasTrabalhadas() }}
+                            className="cursor-pointer btn-outline-primary list-group-item d-flex justify-content-between lh-condensed">
+                            <span>Saindo agora</span>
+                            <strong>{saindoAgora}</strong>
+                        </li>
+                    }
+
                 </ul>
 
             </div>
@@ -41,4 +58,4 @@ const aside = ({ Turnos }) => {
 
 const mapStateToProps = state => (state)
 const mapDispatchToProps = dispatch => bindActionCreators(HoraAction, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(aside);
+export default connect(mapStateToProps, mapDispatchToProps)(Aside);
