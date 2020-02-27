@@ -96,10 +96,18 @@ export default function horaReducer(state = INITIAL_STATE, action) {
 
     switch (action.type) {
 
+        case 'REMOVE_TURNO': {
+            const index = action.payload;
+            const newTurnos = [...state.Turnos]
+            newTurnos.splice(index, 1);
+            return saveState({ ...state, Turnos: newTurnos })
+        }
+
         case 'ADD_TURNO':
             {
-                state.Turnos.push(turnoVazio);
-                return saveState({ ...state, Turnos: state.Turnos })
+                const newTurnos = [...state.Turnos];
+                newTurnos.push(turnoVazio);
+                return saveState({ ...state, Turnos: newTurnos })
             }
 
         case 'CHANGE_TURNO_VALUE':
@@ -127,7 +135,7 @@ export default function horaReducer(state = INITIAL_STATE, action) {
         case 'UPDATE_CARGA_HORARIA':
             {
                 const newTurnos = state.Turnos.map((item, i) => {
-                    return { 
+                    return {
                         ...item
                     }
                 });

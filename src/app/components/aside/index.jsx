@@ -44,7 +44,7 @@ const Aside = ({ Turnos }) => {
                         <li
                             onClick={() => { calcularHorasTrabalhadas() }}
                             className="cursor-pointer btn-outline-primary list-group-item d-flex justify-content-between lh-condensed">
-                            <span>Saindo agora</span>
+                            <span>Agora</span>
                             <strong>{saindoAgora}</strong>
                         </li>
                     }

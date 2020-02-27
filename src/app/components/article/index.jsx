@@ -5,7 +5,7 @@ import * as HoraAction from '../../store/horaAction'
 import InputMask from 'react-input-mask';
 import './style.css'
 
-const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurnoProperty }) => {
+const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurnoProperty, removerTurno }) => {
 
     const onChange = (index, propName, e) => {
         onChangeTurnoProperty(index, propName, e.target.value)
@@ -76,8 +76,23 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                         />
                                     </div>
                                 </div>
+                                {index > 0 &&
+                                    <div>
+                                        <button
+                                            onClick={() => { removerTurno(index) }}
+                                            type="button"
+                                            className="btn btn-danger mr-2">-</button>
+                                    </div>
+                                }
                             </div>
                         ))}
+
+                        <div className="row">
+                            <button onClick={() => { addTurno() }} type="button" className="btn btn-success">Adicionar Turno</button>
+                        </div>
+
+                        <br />
+                        <br />
                     </div>
                 </form>
             </div>
