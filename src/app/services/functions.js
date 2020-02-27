@@ -88,3 +88,37 @@ export function horasTrabalhadasSaindoAgora(turnos) {
 
     return hourStringByMinutes(totalMinutosTrabalhados);
 }
+
+export function validateInputChange(nextState, oldState) {
+    if (!nextState.selection || !nextState.selection.start || !nextState.selection.end || nextState.value === oldState.value) {
+        return nextState;
+    }
+
+    switch (nextState.value) {
+        case "3 :  ":
+        case "4 :  ":
+        case "5 :  ":
+        case "6 :  ":
+        case "7 :  ":
+        case "8 :  ":
+        case "9 :  ":
+            {
+                nextState.value = pad(+nextState.value.split(":")[0], 2)
+                nextState.value += ":  ";
+                nextState.selection.start = 3;
+                nextState.selection.end = 3;
+                return nextState;
+            }
+        default:
+    }
+
+    if (nextState.selection.start === 5 && nextState.selection.end === 5) {
+        const minutes = +nextState.value.split(":")[1];
+        if (minutes >= 60) {
+            nextState.value = nextState.value.split(":")[0] + ":00";
+            nextState.selection = { start: 3, end: 5, length: 2 }
+        }
+    }
+
+    return nextState;
+}

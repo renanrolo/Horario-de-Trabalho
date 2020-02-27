@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import * as HoraAction from '../../store/horaAction'
 import InputMask from 'react-input-mask';
 import './style.css'
+import { validateInputChange } from '../../services/functions'
 
 const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurnoProperty, removerTurno }) => {
 
@@ -31,6 +32,7 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                         //ref={input => turno._name = input}
                                         onChange={(e) => setCargaHoraria(e.target.value)}
                                         type="tel"
+                                        beforeMaskedValueChange={validateInputChange}
                                     />
 
                                 </div>
@@ -56,6 +58,7 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                             //ref={input => turno._name = input}
                                             onChange={(e) => onChange(index, "ini", e)}
                                             type="tel"
+                                            beforeMaskedValueChange={validateInputChange}
                                         />
                                     </div>
                                 </div>
@@ -73,6 +76,7 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                             //ref={input => turno._name = input}
                                             onChange={(e) => onChange(index, "fim", e)}
                                             type="tel"
+                                            beforeMaskedValueChange={validateInputChange}
                                         />
                                     </div>
                                 </div>
