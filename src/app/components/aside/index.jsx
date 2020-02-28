@@ -35,7 +35,6 @@ const Aside = ({ Turnos }) => {
                     <li className="list-group-item d-flex justify-content-between bg-light">
                         <div className="text-success">
                             <h6 className="my-0">TOTAL</h6>
-                            {/* <small>EXAMPLECODE</small> */}
                         </div>
                         <strong className="text-success">{getTotalHours(Turnos)}</strong>
                     </li>

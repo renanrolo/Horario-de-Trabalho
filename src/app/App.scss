@@ -2,6 +2,10 @@ body {
     background-color: #f8f9fa;
 }
 
+.navbar-brand {
+    margin: auto !important;
+}
+
 .input-box,
 .box-btns {
     width: 180px !important;
@@ -14,4 +18,8 @@ body {
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+#hrQuatro {
+    height: 100% !important;
 }

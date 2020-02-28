@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as HoraAction from '../../store/horaAction'
 import InputMask from 'react-input-mask';
-import './style.css'
 import { validateInputChange } from '../../services/functions'
 
 const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurnoProperty, removerTurno }) => {
@@ -21,7 +20,7 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                 <form className="needs-validation" noValidate="">
                     <div className="row">
                         <div className="col-md-6 mb-3">
-                            <label htmlFor="firstName">Carga horaria necessária</label>
+                            <label htmlFor="firstName">Carga horária necessária</label>
                             <div className="row">
                                 <div className="col-md-4">
                                     <InputMask
