@@ -84,7 +84,7 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                         <button
                                             onClick={() => { removerTurno(index) }}
                                             type="button"
-                                            className="btn btn-danger mr-2">-</button>
+                                            className="btn btn-danger mr-2">x</button>
                                     </div>
                                 }
                             </div>
