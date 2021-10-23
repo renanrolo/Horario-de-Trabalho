@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+#/build #vou deixar subir as alterações da pasta build para o guitpages localizar os arquivos finalizados de build
 
 # misc
 .DS_Store
