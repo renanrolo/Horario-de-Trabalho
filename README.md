@@ -21,3 +21,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ### `npm run build`
 
 Builds the app for production to the `build` folder.
+
+Github pages use folder './docs' as default, the build command will deploy the application on /docs folder and this folder should be on source control (on master branch).
