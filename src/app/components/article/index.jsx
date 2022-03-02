@@ -44,11 +44,11 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                     <div className="col-12">
                         {Turnos.map((turno, index) => (
                             <div className="row" key={index}>
-                                <div className="input-box mr-3 mb-3">
+                                
                                     <div className="input-group">
-                                        <div className="input-group-prepend">
-                                            <div className="input-group-text">Início</div>
-                                        </div>
+                                       
+                                        <label className="input-group-text">Início</label>
+
                                         <InputMask
                                             mask="99:99"
                                             maskChar=" "
@@ -59,14 +59,9 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                             type="tel"
                                             beforeMaskedValueChange={validateInputChange}
                                         />
-                                    </div>
-                                </div>
 
-                                <div className="input-box mr-3 mb-3">
-                                    <div className="input-group">
-                                        <div className="input-group-prepend">
-                                            <div className="input-group-text">Fim</div>
-                                        </div>
+                                        <label className="input-group-text">Fim</label>
+                                     
                                         <InputMask
                                             mask="99:99"
                                             maskChar=" "
@@ -77,20 +72,28 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                             type="tel"
                                             beforeMaskedValueChange={validateInputChange}
                                         />
-                                    </div>
-                                </div>
-                                {index > 0 &&
-                                    <div>
-                                        <button
-                                            onClick={() => { removerTurno(index) }}
+
+                                        {index <= 0 &&
+                                            <button
                                             type="button"
-                                            className="btn btn-danger mr-2">x</button>
+                                             disabled="disabled"
+                                            className="btn btn-secondary mr-2">x</button>
+                                        }
+
+                                        {index > 0 &&
+                                            <button
+                                                onClick={() => { removerTurno(index) }}
+                                                type="button"
+                                                className="btn btn-danger mr-2">x</button>
+                                        }
                                     </div>
-                                }
+                                
+                                
                             </div>
                         ))}
 
-                        <div className="row">
+                        <br />
+                        <div className="">
                             <button onClick={() => { addTurno() }} type="button" className="btn btn-success">Adicionar Turno</button>
                         </div>
 
