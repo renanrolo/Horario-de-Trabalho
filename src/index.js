@@ -14,6 +14,7 @@ ReactGA.initialize(TRACKING_ID, {
         cookieDomain: "renanrolo.github.io"
     }
 });
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 ReactDOM.render(
     <Provider store={Store}>
