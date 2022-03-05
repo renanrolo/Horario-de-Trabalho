@@ -7,8 +7,12 @@ import ReactGA from 'react-ga';
 import App from './app/App';
 import Store from './app/store'
 
-const TRACKING_ID = "G-WVHZZFPGZX"; // YOUR_OWN_TRACKING_ID
-ReactGA.initialize(TRACKING_ID);
+const TRACKING_ID = "G-WVHZZFPGZX";
+ReactGA.initialize(TRACKING_ID, {
+    gaOptions: {
+        cookieFlags: "SameSite=None; Secure"
+    }
+});
 
 ReactDOM.render(
     <Provider store={Store}>
