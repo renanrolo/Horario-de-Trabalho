@@ -10,7 +10,8 @@ import Store from './app/store'
 const TRACKING_ID = "G-WVHZZFPGZX";
 ReactGA.initialize(TRACKING_ID, {
     gaOptions: {
-        cookieFlags: "SameSite=None; Secure"
+        cookieFlags: "SameSite=None; Secure",
+        cookieDomain: "renanrolo.github.io"
     }
 });
 
