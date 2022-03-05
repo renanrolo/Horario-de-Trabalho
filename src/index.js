@@ -7,14 +7,14 @@ import ReactGA from 'react-ga';
 import App from './app/App';
 import Store from './app/store'
 
-const TRACKING_ID = "G-688LHV55FK";
-ReactGA.initialize(TRACKING_ID, {
-    gaOptions: {
-        cookieFlags: "SameSite=None; Secure",
-        cookieDomain: "auto"
-    }
-});
-ReactGA.pageview(window.location.pathname + window.location.search);
+// const TRACKING_ID = "G-688LHV55FK";
+// ReactGA.initialize(TRACKING_ID, {
+//     gaOptions: {
+//         cookieFlags: "SameSite=None; Secure",
+//         cookieDomain: "auto"
+//     }
+// });
+// ReactGA.pageview(window.location.pathname + window.location.search);
 
 ReactDOM.render(
     <Provider store={Store}>
