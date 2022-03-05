@@ -11,7 +11,7 @@ const TRACKING_ID = "G-WVHZZFPGZX";
 ReactGA.initialize(TRACKING_ID, {
     gaOptions: {
         cookieFlags: "SameSite=None; Secure",
-        cookieDomain: "renanrolo.github.io"
+        cookieDomain: "https://renanrolo.github.io/"
     }
 });
 ReactGA.pageview(window.location.pathname + window.location.search);
