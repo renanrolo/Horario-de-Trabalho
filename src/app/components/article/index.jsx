@@ -25,7 +25,6 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                         maskChar=" "
                                         className="form-control app-input"
                                         value={CargaHoraria}
-                                        //ref={input => turno._name = input}
                                         onChange={(e) => setCargaHoraria(e.target.value)}
                                         type="tel"
                                         beforeMaskedValueChange={validateInputChange}
@@ -50,7 +49,6 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                         maskChar=" "
                                         className="form-control app-input"
                                         value={turno.ini}
-                                        //ref={input => turno._name = input}
                                         onChange={(e) => onChange(index, "ini", e)}
                                         type="tel"
                                         beforeMaskedValueChange={validateInputChange}
@@ -63,7 +61,6 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                         maskChar=" "
                                         className="form-control app-input"
                                         value={turno.fim}
-                                        //ref={input => turno._name = input}
                                         onChange={(e) => onChange(index, "fim", e)}
                                         type="tel"
                                         beforeMaskedValueChange={validateInputChange}
