@@ -1,7 +1,5 @@
 import React, { useState } from "react"
-import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
-import * as HoraAction from "../../store/horaAction"
+import dispatcher from "../../store/dispatcher";
 import { getTotalHours, getStringTotalTurno } from "../../services/functions"
 import { horasTrabalhadasSaindoAgora } from "../../services/functions"
 
@@ -55,6 +53,4 @@ const Aside = ({ Turnos }) => {
     )
 }
 
-const mapStateToProps = state => (state)
-const mapDispatchToProps = dispatch => bindActionCreators(HoraAction, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(Aside);
+export default dispatcher(Aside);
