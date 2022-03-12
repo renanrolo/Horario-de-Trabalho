@@ -1,6 +1,6 @@
-import { createStore } from 'redux';
+import { createStore } from "redux";
 
-import HoraReducer from './horaReducer';
+import HoraReducer from "./horaReducer";
 
 const store = createStore(HoraReducer);
 

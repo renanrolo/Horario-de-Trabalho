@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as HoraAction from '../../store/horaAction'
-import { getTotalHours, getStringTotalTurno } from '../../services/functions'
-import { horasTrabalhadasSaindoAgora } from '../../services/functions'
+import React, { useState } from "react"
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
+import * as HoraAction from "../../store/horaAction"
+import { getTotalHours, getStringTotalTurno } from "../../services/functions"
+import { horasTrabalhadasSaindoAgora } from "../../services/functions"
 
 const Aside = ({ Turnos }) => {
 

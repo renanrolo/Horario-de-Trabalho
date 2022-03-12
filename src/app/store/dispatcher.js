@@ -1,7 +1,7 @@
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as HoraAction from './horaAction';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as HoraAction from "./horaAction";
 
 const mapStateToProps = state => (state)
 const mapDispatchToProps = dispatch => bindActionCreators(HoraAction, dispatch)

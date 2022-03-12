@@ -1,7 +1,7 @@
 import {
     hourStringByMinutes,
     getMinutes
-} from '../services/functions'
+} from "../services/functions"
 
 const key = "cargahoraria";
 
@@ -11,21 +11,21 @@ export default function horaReducer(state = INITIAL_STATE, action) {
 
     switch (action.type) {
 
-        case 'REMOVE_TURNO': {
+        case "REMOVE_TURNO": {
             const index = action.payload;
             const newTurnos = [...state.Turnos]
             newTurnos.splice(index, 1);
             return saveState({ ...state, Turnos: newTurnos })
         }
 
-        case 'ADD_TURNO':
+        case "ADD_TURNO":
             {
                 const newTurnos = [...state.Turnos];
-                newTurnos.push({ ini: '', fim: ''});
+                newTurnos.push({ ini: "", fim: ""});
                 return saveState({ ...state, Turnos: newTurnos })
             }
 
-        case 'CHANGE_TURNO_VALUE':
+        case "CHANGE_TURNO_VALUE":
             {
                 const { propName, value, index } = action.payload;
 
@@ -47,7 +47,7 @@ export default function horaReducer(state = INITIAL_STATE, action) {
                 return saveState({ ...state, Turnos: newTurnos })
             }
 
-        case 'UPDATE_CARGA_HORARIA':
+        case "UPDATE_CARGA_HORARIA":
             {
                 const newTurnos = state.Turnos.map((item, i) => {
                     return {
@@ -55,7 +55,7 @@ export default function horaReducer(state = INITIAL_STATE, action) {
                     }
                 });
 
-                previewLastTime('ini', 0, newTurnos, action.payload)
+                previewLastTime("ini", 0, newTurnos, action.payload)
 
                 return saveState({ ...state, CargaHoraria: action.payload, Turnos: newTurnos })
             }
@@ -84,14 +84,14 @@ function loadState() {
 
     return {
         Turnos: [{
-            ini: '08:00',
-            fim: '11:30'
+            ini: "08:00",
+            fim: "11:30"
         },
         {
-            ini: '12:30',
-            fim: '17:00'
+            ini: "12:30",
+            fim: "17:00"
         }],
-        CargaHoraria: '08:00'
+        CargaHoraria: "08:00"
     }
 }
 
@@ -107,13 +107,13 @@ function hourHasValue(hour) {
 
 function previewLastTime(propName, index, turnos, cargaHoraria) {
     if (!cargaHoraria) {
-        return; //se não tiver carga horaria
+        return;
     }
 
     const ultimoIndex = turnos.length - 1;
 
     if (propName === "fim" && index === ultimoIndex) {
-        return; //se estiver editando o ultimo registro
+        return;
     }
 
     let todosPreenchidos = true;
