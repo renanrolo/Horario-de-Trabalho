@@ -1,6 +1,6 @@
-import React from 'react'
+//import React from 'react'
 
-export default () => (
+const footer = () => (
     <footer className="my-5 pt-5 text-muted text-center text-small">
         <p className="mb-1">© Renan Rolo</p>
         <ul className="list-inline">
@@ -10,3 +10,5 @@ export default () => (
         </ul>
     </footer>
 )
+
+export default footer;
