@@ -1,4 +1,3 @@
-import React from "react";
 import InputMask from "react-input-mask";
 import { validateInputChange } from "../../services/functions";
 import dispatcher from "../../store/dispatcher";

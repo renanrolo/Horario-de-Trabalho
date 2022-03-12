@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.scss";
 
 import Article from "./components/article"
