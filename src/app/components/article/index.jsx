@@ -1,9 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as HoraAction from '../../store/horaAction'
 import InputMask from 'react-input-mask';
-import { validateInputChange } from '../../services/functions'
+import { validateInputChange } from '../../services/functions';
+import dispatcher from '../../store/dispatcher';
 
 const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurnoProperty, removerTurno }) => {
 
@@ -33,7 +31,6 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                         type="tel"
                                         beforeMaskedValueChange={validateInputChange}
                                     />
-
                                 </div>
                             </div>
                         </div>
@@ -44,51 +41,51 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                     <div className="col-12">
                         {Turnos.map((turno, index) => (
                             <div className="row" key={index}>
-                                
-                                    <div className="input-group">
-                                       
-                                        <label className="input-group-text">Início</label>
 
-                                        <InputMask
-                                            mask="99:99"
-                                            maskChar=" "
-                                            className="form-control app-input"
-                                            value={turno.ini}
-                                            //ref={input => turno._name = input}
-                                            onChange={(e) => onChange(index, "ini", e)}
-                                            type="tel"
-                                            beforeMaskedValueChange={validateInputChange}
-                                        />
+                                <div className="input-group">
 
-                                        <label className="input-group-text">Fim</label>
-                                     
-                                        <InputMask
-                                            mask="99:99"
-                                            maskChar=" "
-                                            className="form-control app-input"
-                                            value={turno.fim}
-                                            //ref={input => turno._name = input}
-                                            onChange={(e) => onChange(index, "fim", e)}
-                                            type="tel"
-                                            beforeMaskedValueChange={validateInputChange}
-                                        />
+                                    <label className="input-group-text">Início</label>
 
-                                        {index <= 0 &&
-                                            <button
+                                    <InputMask
+                                        mask="99:99"
+                                        maskChar=" "
+                                        className="form-control app-input"
+                                        value={turno.ini}
+                                        //ref={input => turno._name = input}
+                                        onChange={(e) => onChange(index, "ini", e)}
+                                        type="tel"
+                                        beforeMaskedValueChange={validateInputChange}
+                                    />
+
+                                    <label className="input-group-text">Fim</label>
+
+                                    <InputMask
+                                        mask="99:99"
+                                        maskChar=" "
+                                        className="form-control app-input"
+                                        value={turno.fim}
+                                        //ref={input => turno._name = input}
+                                        onChange={(e) => onChange(index, "fim", e)}
+                                        type="tel"
+                                        beforeMaskedValueChange={validateInputChange}
+                                    />
+
+                                    {index <= 0 &&
+                                        <button
                                             type="button"
-                                             disabled="disabled"
+                                            disabled="disabled"
                                             className="btn btn-secondary mr-2">x</button>
-                                        }
+                                    }
 
-                                        {index > 0 &&
-                                            <button
-                                                onClick={() => { removerTurno(index) }}
-                                                type="button"
-                                                className="btn btn-danger mr-2">x</button>
-                                        }
-                                    </div>
-                                
-                                
+                                    {index > 0 &&
+                                        <button
+                                            onClick={() => { removerTurno(index) }}
+                                            type="button"
+                                            className="btn btn-danger mr-2">x</button>
+                                    }
+                                </div>
+
+
                             </div>
                         ))}
 
@@ -106,6 +103,4 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
     )
 }
 
-const mapStateToProps = state => (state)
-const mapDispatchToProps = dispatch => bindActionCreators(HoraAction, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(Article);
+export default dispatcher(Article);
