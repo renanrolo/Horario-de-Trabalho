@@ -52,6 +52,7 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                         onChange={(e) => onChange(index, "ini", e)}
                                         type="tel"
                                         beforeMaskedValueChange={validateInputChange}
+                                        data-testid="input-shift-date"
                                     />
 
                                     <label className="input-group-text">Fim</label>
@@ -64,12 +65,14 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                         onChange={(e) => onChange(index, "fim", e)}
                                         type="tel"
                                         beforeMaskedValueChange={validateInputChange}
+                                        data-testid="input-shift-date"
                                     />
 
                                     {index <= 0 &&
                                         <button
                                             type="button"
                                             disabled="disabled"
+                                            data-testid="button-remove-shift"
                                             className="btn btn-secondary mr-2">x</button>
                                     }
 
@@ -77,6 +80,7 @@ const Article = ({ Turnos, CargaHoraria, setCargaHoraria, addTurno, onChangeTurn
                                         <button
                                             onClick={() => { removerTurno(index) }}
                                             type="button"
+                                            data-testid="button-remove-shift"
                                             className="btn btn-danger mr-2">x</button>
                                     }
                                 </div>
